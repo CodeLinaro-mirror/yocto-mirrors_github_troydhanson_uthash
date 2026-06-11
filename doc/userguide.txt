@@ -1,7 +1,8 @@
 uthash User Guide
 =================
-Troy D. Hanson, Arthur O'Dwyer
-v2.3.0, February 2021
+Troy D. Hanson <tdh@tkhanson.net>
+Arthur O'Dwyer <arthur.j.odwyer@gmail.com>
+v2.4.0, June 2026
 
 To download uthash, follow this link back to the
 https://github.com/troydhanson/uthash[GitHub project page].

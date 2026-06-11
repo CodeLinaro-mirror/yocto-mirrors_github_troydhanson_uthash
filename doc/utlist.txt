@@ -1,7 +1,8 @@
 utlist: linked list macros for C structures
 ===========================================
 Troy D. Hanson <tdh@tkhanson.net>
-v2.3.0, February 2021
+Arthur O'Dwyer <arthur.j.odwyer@gmail.com>
+v2.4.0, June 2026
 
 Here's a link back to the https://github.com/troydhanson/uthash[GitHub project page].
 

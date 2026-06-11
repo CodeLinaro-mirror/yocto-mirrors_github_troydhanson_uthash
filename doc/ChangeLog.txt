@@ -5,6 +5,15 @@ Click to return to the link:index.html[uthash home page].
 
 NOTE: This ChangeLog may be incomplete and/or incorrect. See the git commit log.
 
+Version 2.4.0 (2026-06-25)
+--------------------------
+* add utarray_replace (thanks, xunicatt!)
+* add LL_REVERSE/DL_REVERSE/CDL_REVERSE (thanks, xunicatt!)
+* add CDL_CONCAT (thanks, xunicatt!)
+* remove `oom` (deprecated in v2.2.0) in favor of `utarray_oom`
+* remove HASH_DEFINE_OWN_STDINT (added in v2.2.0), on the theory nobody uses it
+* use __typeof on the MCST Elbrus C Compiler (thanks, utf-4096!)
+
 Version 2.3.0 (2021-02-25)
 --------------------------
 * remove HASH_FCN; the HASH_FUNCTION and HASH_KEYCMP macros now behave similarly
