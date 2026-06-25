@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.1" />
 <title>uthash User Guide</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -769,9 +769,9 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>uthash User Guide</h1>
-<span id="author">Troy D. Hanson, Arthur O'Dwyer</span><br />
-<span id="revnumber">version 2.3.0,</span>
-<span id="revdate">February 2021</span>
+<span id="author">Troy D. Hanson</span><br />
+<span id="email"><code>&lt;<a href="mailto:tdh@tkhanson.net">tdh@tkhanson.net</a>&gt;</code></span><br />
+<span id="revdate">Arthur O'Dwyer <arthur.j.odwyer@gmail.com></span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -780,6 +780,7 @@ asciidoc.install(2);
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph"><p>v2.4.0, June 2026</p></div>
 <div class="paragraph"><p>To download uthash, follow this link back to the
 <a href="https://github.com/troydhanson/uthash">GitHub project page</a>.
 Back to my <a href="https://troydhanson.github.io/">other projects</a>.</p></div>
@@ -1660,7 +1661,7 @@ different use case handled by <code>HASH_ADD_KEYPTR</code>).</p></div>
 <div class="listingblock">
 <div class="title">A pointer key</div>
 <div class="content">
-<pre><code>#include &lt;stdio.h&gt;
+<pre><code>#include &lt;assert.h&gt;
 #include &lt;stdlib.h&gt;
 #include "uthash.h"
 
@@ -1671,17 +1672,16 @@ typedef struct {
 } el_t;
 
 el_t *hash = NULL;
-char *someaddr = NULL;
+void *someaddr = &amp;hash;
 
 int main() {
   el_t *d;
   el_t *e = (el_t *)malloc(sizeof *e);
-  if (!e) return -1;
-  e-&gt;key = (void*)someaddr;
+  e-&gt;key = someaddr;
   e-&gt;i = 1;
   HASH_ADD_PTR(hash, key, e);
   HASH_FIND_PTR(hash, &amp;someaddr, d);
-  if (d) printf("found\n");
+  assert(d == e);
 
   /* release memory */
   HASH_DEL(hash, e);
@@ -1689,9 +1689,7 @@ int main() {
   return 0;
 }</code></pre>
 </div></div>
-<div class="paragraph"><p>This example is included in <code>tests/test57.c</code>. Note that the end of the program
-deletes the element out of the hash, (and since no more elements remain in the
-hash), uthash releases its internal memory.</p></div>
+<div class="paragraph"><p>This example is included in <code>tests/test57.c</code>.</p></div>
 </div>
 <div class="sect2">
 <h3 id="_structure_keys">Structure keys</h3>
@@ -1751,7 +1749,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }</code></pre>
 </div></div>
-<div class="paragraph"><p>This usage is nearly the same as use of a compound key explained below.</p></div>
+<div class="paragraph"><p>This usage is nearly the same as the usage of a compound key explained below.</p></div>
 <div class="paragraph"><p>Note that the general macros require the name of the <code>UT_hash_handle</code> to be
 passed as the first argument (here, this is <code>hh</code>). The general macros are
 documented in <a href="#Macro_reference">Macro Reference</a>.</p></div>
@@ -2015,16 +2013,15 @@ always used with the <code>users_by_name</code> hash table).</p></div>
 </div>
 <div class="sect2">
 <h3 id="_sorted_insertion_of_new_items">Sorted insertion of new items</h3>
-<div class="paragraph"><p>If you would like to maintain a sorted hash you have two options. The first
-option is to use the HASH_SRT() macro, which will sort any unordered list in
+<div class="paragraph"><p>To maintain a sorted hash, you have two options. Your first
+option is to use the <code>HASH_SRT</code> macro, which will sort any unordered list in
 <em>O(n log(n))</em>. This is the best strategy if you&#8217;re just filling up a hash
-table with items in random order with a single final HASH_SRT() operation
-when all is done. Obviously, this won&#8217;t do what you want if you need
-the list to be in an ordered state at times between insertion of
-items. You can use HASH_SRT() after every insertion operation, but that will
-yield a computational complexity of <em>O(n^2 log n)</em>.</p></div>
-<div class="paragraph"><p>The second route you can take is via the in-order add and replace macros.
-The <code>HASH_ADD_INORDER*</code> macros work just like their <code>HASH_ADD*</code> counterparts, but
+table with items in random order with a single final <code>HASH_SRT</code> operation
+when all is done. If you need the table to remain sorted as you add and remove
+items, you can use <code>HASH_SRT</code> after every insertion operation, but that gives
+a computational complexity of <em>O(n^2 log n)</em> to insert <em>n</em> items.</p></div>
+<div class="paragraph"><p>Your second option is to use the in-order add and replace macros.
+The <code>HASH_ADD_*_INORDER</code> macros work just like their <code>HASH_ADD_*</code> counterparts, but
 with an additional comparison-function argument:</p></div>
 <div class="literalblock">
 <div class="content">
@@ -2036,11 +2033,11 @@ with an additional comparison-function argument:</p></div>
 <div class="content">
 <pre><code>HASH_ADD_KEYPTR_INORDER(hh, items, &amp;item-&gt;name, strlen(item-&gt;name), item, name_sort);</code></pre>
 </div></div>
-<div class="paragraph"><p>New items are sorted at insertion time in <em>O(n)</em>, thus resulting in a
-total computational complexity of <em>O(n^2)</em> for the creation of the hash
-table with all items.
-For in-order add to work, the list must be in an ordered state before
-insertion of the new item.</p></div>
+<div class="paragraph"><p>These macros assume that the hash is already sorted according to the
+comparison function, and insert the new item in its proper place.
+A single insertion takes <em>O(n)</em>, resulting in a total computational
+complexity of <em>O(n^2)</em> to insert all <em>n</em> items: slower than a single
+<code>HASH_SRT</code>, but faster than doing a <code>HASH_SRT</code> after every insertion.</p></div>
 </div>
 <div class="sect2">
 <h3 id="_several_sort_orders">Several sort orders</h3>
@@ -3158,9 +3155,8 @@ condition
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 2.3.0<br />
 Last updated
- 2022-01-29 13:59:05 EST
+ 2026-06-25 09:42:32 EDT
 </div>
 </div>
 </body>

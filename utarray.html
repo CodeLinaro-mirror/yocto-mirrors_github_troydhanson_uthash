@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.1" />
 <title>utarray: dynamic array macros for C</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -771,8 +771,7 @@ asciidoc.install(2);
 <h1>utarray: dynamic array macros for C</h1>
 <span id="author">Troy D. Hanson</span><br />
 <span id="email"><code>&lt;<a href="mailto:tdh@tkhanson.net">tdh@tkhanson.net</a>&gt;</code></span><br />
-<span id="revnumber">version 2.3.0,</span>
-<span id="revdate">February 2021</span>
+<span id="revdate">Arthur O'Dwyer <arthur.j.odwyer@gmail.com></span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -781,6 +780,7 @@ asciidoc.install(2);
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph"><p>v2.4.0, June 2026</p></div>
 <div class="paragraph"><p>Here&#8217;s a link back to the <a href="https://github.com/troydhanson/uthash">GitHub project page</a>.</p></div>
 </div>
 </div>
@@ -932,7 +932,7 @@ a copy of the source string and pushes that copy into the array.</p></div>
 </div>
 <div class="sect2">
 <h3 id="_about_ut_icd">About UT_icd</h3>
-<div class="paragraph"><p>Arrays be made of any type of element, not just integers and strings.  The
+<div class="paragraph"><p>Arrays can be made of any type of element, not just integers and strings.  The
 elements can be basic types or structures. Unless you&#8217;re dealing with integers
 and strings (which use pre-defined <code>ut_int_icd</code> and <code>ut_str_icd</code>), you&#8217;ll need
 to define a <code>UT_icd</code> helper structure. This structure contains everything that
@@ -1154,6 +1154,10 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">insert element p to index j</p></td>
 </tr>
 <tr>
+<td align="left" valign="top"><p class="table"><code>utarray_replace(UT_array *a,void *p, int j)</code></p></td>
+<td align="left" valign="top"><p class="table">replace element p at index j</p></td>
+</tr>
+<tr>
 <td align="left" valign="top"><p class="table"><code>utarray_inserta(UT_array *a,UT_array *w, int j)</code></p></td>
 <td align="left" valign="top"><p class="table">insert array w into array a at index j</p></td>
 </tr>
@@ -1273,9 +1277,8 @@ To override the default out-of-memory handling behavior (which calls <code>exit(
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 2.3.0<br />
 Last updated
- 2022-01-29 13:56:04 EST
+ 2026-06-25 09:42:32 EDT
 </div>
 </div>
 </body>

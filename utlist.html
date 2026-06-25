@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.1" />
 <title>utlist: linked list macros for C structures</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -771,8 +771,7 @@ asciidoc.install(2);
 <h1>utlist: linked list macros for C structures</h1>
 <span id="author">Troy D. Hanson</span><br />
 <span id="email"><code>&lt;<a href="mailto:tdh@tkhanson.net">tdh@tkhanson.net</a>&gt;</code></span><br />
-<span id="revnumber">version 2.3.0,</span>
-<span id="revdate">February 2021</span>
+<span id="revdate">Arthur O'Dwyer <arthur.j.odwyer@gmail.com></span>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -781,6 +780,7 @@ asciidoc.install(2);
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph"><p>v2.4.0, June 2026</p></div>
 <div class="paragraph"><p>Here&#8217;s a link back to the <a href="https://github.com/troydhanson/uthash">GitHub project page</a>.</p></div>
 </div>
 </div>
@@ -994,12 +994,17 @@ cellspacing="0" cellpadding="4">
 <tr>
 <td align="left" valign="top"><p class="table"><code>LL_CONCAT(head1,head2);</code></p></td>
 <td align="left" valign="top"><p class="table"><code>DL_CONCAT(head1,head2);</code></p></td>
-<td align="left" valign="top"><p class="table"><code></code></p></td>
+<td align="left" valign="top"><p class="table"><code>CDL_CONCAT(head1,head2);</code></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table"><code>LL_DELETE(head,del);</code></p></td>
 <td align="left" valign="top"><p class="table"><code>DL_DELETE(head,del);</code></p></td>
 <td align="left" valign="top"><p class="table"><code>CDL_DELETE(head,del);</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>LL_REVERSE(head);</code></p></td>
+<td align="left" valign="top"><p class="table"><code>DL_REVERSE(head);</code></p></td>
+<td align="left" valign="top"><p class="table"><code>CDL_REVERSE(head);</code></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table"><code>LL_SORT(head,cmp);</code></p></td>
@@ -1299,12 +1304,17 @@ cellspacing="0" cellpadding="4">
 <tr>
 <td align="left" valign="top"><p class="table"><code>LL_CONCAT2(head1,head2,next);</code></p></td>
 <td align="left" valign="top"><p class="table"><code>DL_CONCAT2(head1,head2,prev,next);</code></p></td>
-<td align="left" valign="top"><p class="table"><code></code></p></td>
+<td align="left" valign="top"><p class="table"><code>CDL_CONCAT2(head1,head2,prev,next);</code></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table"><code>LL_DELETE2(head,del,next);</code></p></td>
 <td align="left" valign="top"><p class="table"><code>DL_DELETE2(head,del,prev,next);</code></p></td>
 <td align="left" valign="top"><p class="table"><code>CDL_DELETE2(head,del,prev,next);</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>LL_REVERSE2(head,next);</code></p></td>
+<td align="left" valign="top"><p class="table"><code>DL_REVERSE2(head,prev,next);</code></p></td>
+<td align="left" valign="top"><p class="table"><code>CDL_REVERSE2(head,prev,next);</code></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table"><code>LL_SORT2(head,cmp,next);</code></p></td>
@@ -1351,9 +1361,8 @@ cellspacing="0" cellpadding="4">
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Version 2.3.0<br />
 Last updated
- 2022-01-29 13:56:04 EST
+ 2026-06-25 09:42:32 EDT
 </div>
 </div>
 </body>

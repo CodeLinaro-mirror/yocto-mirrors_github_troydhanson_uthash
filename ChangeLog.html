@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 9.1.0" />
+<meta name="generator" content="AsciiDoc 10.2.1" />
 <title>uthash ChangeLog</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -786,6 +786,43 @@ asciidoc.install(2);
 <td class="content">This ChangeLog may be incomplete and/or incorrect. See the git commit log.</td>
 </tr></table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_version_2_4_0_2026_06_25">Version 2.4.0 (2026-06-25)</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+add utarray_replace (thanks, xunicatt!)
+</p>
+</li>
+<li>
+<p>
+add LL_REVERSE/DL_REVERSE/CDL_REVERSE (thanks, xunicatt!)
+</p>
+</li>
+<li>
+<p>
+add CDL_CONCAT (thanks, xunicatt!)
+</p>
+</li>
+<li>
+<p>
+remove <code>oom</code> (deprecated in v2.2.0) in favor of <code>utarray_oom</code>
+</p>
+</li>
+<li>
+<p>
+remove HASH_DEFINE_OWN_STDINT (added in v2.2.0), on the theory nobody uses it
+</p>
+</li>
+<li>
+<p>
+use __typeof on the MCST Elbrus C Compiler (thanks, utf-4096!)
+</p>
+</li>
+</ul></div>
 </div>
 </div>
 <div class="sect1">
@@ -1713,7 +1750,7 @@ Initial release
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2022-01-29 13:56:04 EST
+ 2026-06-25 09:42:32 EDT
 </div>
 </div>
 </body>
